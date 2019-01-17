@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import './App.css';
 
 class App extends Component {
@@ -6,10 +7,7 @@ class App extends Component {
     super(props);
 
     this.state = {
-      books: [
-        { id: 1, title: 'Jurassic Park', read: false },
-        { id: 2, title: 'Timeline', read: false },
-      ]
+      books: [],
     }
   }
 
@@ -19,6 +17,21 @@ class App extends Component {
       booksForDom.push(<li>{book.title}</li>);
     }
     return booksForDom;
+  }
+
+  getBooksFromServer = () => {
+    axios({
+      method: 'GET',
+      url: '/books',
+    }).then((response) => {
+      this.setState({
+        books: response.data,
+      });
+    })
+  }
+
+  componentDidMount() {
+    this.getBooksFromServer();
   }
 
   render() {
