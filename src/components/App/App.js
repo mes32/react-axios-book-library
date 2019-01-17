@@ -14,7 +14,7 @@ class App extends Component {
   renderBooks = (books) => {
     let booksForDom = [];
     for (let book of books) {
-      booksForDom.push(<li>{book.title}</li>);
+      booksForDom.push(<li>{book.title}<button onClick={this.markRead}>Read</button></li>);
     }
     return booksForDom;
   }
@@ -29,6 +29,11 @@ class App extends Component {
       });
     })
   }
+
+  markRead = (event) => {
+    console.log('I read a great book');
+  }
+
 
   componentDidMount() {
     this.getBooksFromServer();
