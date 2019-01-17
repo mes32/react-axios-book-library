@@ -13,6 +13,14 @@ class App extends Component {
     }
   }
 
+  renderBooks = (books) => {
+    let booksForDom = [];
+    for (let book of books) {
+      booksForDom.push(<li>{book.title}</li>);
+    }
+    return booksForDom;
+  }
+
   render() {
     return (
       <div className="App">
@@ -20,6 +28,9 @@ class App extends Component {
           <h1 className="App-title">Books to Read</h1>
         </header>
         <br/>
+        {JSON.stringify(this.state)}
+        <ul>{this.renderBooks(this.state.books)}</ul>
+
 
       </div>
     );
